@@ -2,7 +2,7 @@
 
 ## Step 1: Assemble the Chassis
 - Install wheels, linear rails, or sliders (depending on design).
-- Mount the stepper motors for X, Y and Z movement.
+- Mount the stepper motors for X and Y movement.
 - Ensure the frame is rigid and square.
 
 ## Step 2: Mount the Z-Lift Mechanism
@@ -17,7 +17,6 @@
 
 ## Step 4: Install Sensors
 - Mount all endstop switches for X, Y, and Z homing.
-- Install the VL53L1X ToF distance sensor.
 - Optionally add an IMU for movement stabilization.
 
 ## Step 5: Wire All Components
