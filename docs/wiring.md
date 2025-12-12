@@ -6,7 +6,6 @@
 - **Raspberry Pi 4** – main controller (Python / ROS2)  
 - **Arduino Nano** – optional: low-level stepper control  
 - **Endstops / Microswitches** – for home positions  
-- **ToF Sensor (VL53L1X)** – for precise positioning  
 - **Linear Actuator / Gripper** – Z-lift and gripper actuation  
 - **12V Power Supply** – powers steppers and actuators  
 
@@ -45,14 +44,13 @@
 - GPIO → STEP/DIR driver pins  
 - Logic level: Pi uses 3.3V; driver may require 5V → use level shifter if needed  
 - Endstops → GPIO with pull-up/down resistor  
-- I2C devices (ToF, IMU) → GPIO2 (SDA), GPIO3 (SCL)  
+- I2C devices (IMU) → GPIO2 (SDA), GPIO3 (SCL)  
 
 ---
 
 ## 4️⃣ Endstops / Sensors
 - Home sensors X/Y/Z → digital GPIO input  
-- Pull-up resistor (10kΩ) if using NC switches  
-- ToF sensor → I2C bus  
+- Pull-up resistor (10kΩ) if using NC switches   
 - Optional IMU → I2C bus  
 
 ---
