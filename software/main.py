@@ -12,6 +12,10 @@ def move_cell(steps,direction):
         time.sleep(0.001)
         GPIO.output(STEP_PIN,False)
         time.sleep(0.001)
+
+def home(x: bool = True, y: bool = True, z: bool = True):
+    pass
+    
 try:
     move_cell(800,True)
     time.sleep(1)
