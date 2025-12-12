@@ -1,45 +1,45 @@
 # Gridfinity Autopilot
 
-## Beschreibung
-Autonomer Roboter zum Bewegen von Gridfinity-Boxen auf 42x42mm Raster.  
-Differential Drive + Z-Hub + Greifer mit Druckarmen.
+## Description
+An autonomous robot designed to move Gridfinity boxes on a 42x42 mm grid.  
+The robot features a differential drive, a Z-lift mechanism, and a gripper with pressure arms.
 
 ## Hardware
-- NEMA17 Stepper Motor 40 Ncm
-- TB6600 Stepper-Treiber oder Pololu A4988
-- Raspberry Pi 4
-- Arduino Nano / Uno (optional)
-- Mikroschalter Endschalter
-- ToF Sensor VL53L1X
-- Mini Linearaktuator für Z-Hub
-- Gummiarme für Greifer
+- **Motors:** NEMA17 Stepper Motor 40 Ncm  
+- **Motor Drivers:** TB6600 Stepper Driver or Pololu A4988  
+- **Controller:** Raspberry Pi 4  
+- **Optional Microcontroller:** Arduino Nano / Uno for low-level motor control  
+- **Sensors:** Microswitch endstops, VL53L1X ToF distance sensor  
+- **Actuators:** Mini linear actuator for Z-lift, rubber/silicone gripper arms  
 
 ## Software
-- Arduino Sketch für Low-Level-Motorsteuerung
-- Python-Skripte auf Raspberry Pi:
-  - Grid-Map Verwaltung
-  - Motion Controller
-  - Sensor-Abfragen (Endschalter, ToF, IMU)
-- Optional ROS2 Nodes
+- **Arduino Sketch:** Low-level motor control, Z-lift, gripper actuation, endstop reading  
+- **Python Scripts (Raspberry Pi):**
+  - Grid map management and pathfinding (e.g., A*)  
+  - Motion controller sending STEP/DIR commands to Arduino  
+  - Sensor reading (endstops, ToF, IMU)  
+- **Optional:** ROS2 nodes for navigation and higher-level control  
 
-## Aufbau
-1. Mechanik montieren (Chassis, Z-Hub, Greifer)
-2. Sensoren platzieren
-3. Verkabelung aufbauen
-4. Arduino Firmware laden
-5. Python-Skripte starten / ROS2 Nodes starten
-6. Testen und kalibrieren
+## Assembly Instructions
+1. Assemble the chassis (wheels, motors, frame)  
+2. Mount the Z-lift mechanism  
+3. Attach gripper arms to the Z-lift  
+4. Place sensors (endstops, ToF, optional IMU)  
+5. Wire motor drivers and sensors to Raspberry Pi / Arduino  
+6. Upload Arduino firmware and test motor/sensor functionality  
+7. Run Python scripts or ROS2 nodes to test autonomous movement  
 
-## Test & Kalibrierung
-- Endschalter prüfen
-- Schrittgröße 42 mm testen
-- Z-Hub & Greifer prüfen
-- Kraftregelung testen
+## Testing & Calibration
+- Verify endstop functionality  
+- Calibrate grid steps (42 mm per cell)  
+- Test Z-lift and gripper actuation  
+- Adjust gripper force if using load-cell feedback  
 
-## Erweiterungen
-- RFID / NFC Inventartracking
-- Kamera für visuelle Kontrolle
-- Multi-Roboter Koordination
+## Optional Extensions
+- RFID/NFC for box tracking  
+- Camera for visual feedback  
+- Multi-robot coordination  
+- Automated charging station  
 
-## Lizenz
+## License
 MIT
