@@ -1,0 +1,5 @@
+Test 1: Endstop functionality
+Test 2: Stepper movement for 42 mm per cell
+Test 3: Z-lift up/down
+Test 4: Gripper open/close and force check
+Test 5: Full grid movement simulation
