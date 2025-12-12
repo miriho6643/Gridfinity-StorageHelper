@@ -2,7 +2,7 @@
 
 ## Step 1: Assemble the Chassis
 - Install wheels, linear rails, or sliders (depending on design).
-- Mount the stepper motors for X and Y movement.
+- Mount the stepper motors for X, Y and Z movement.
 - Ensure the frame is rigid and square.
 
 ## Step 2: Mount the Z-Lift Mechanism
