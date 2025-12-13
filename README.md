@@ -17,14 +17,14 @@ The robot features a differential drive, a Z-lift mechanism, and a gripper with 
 - **Python Scripts (Raspberry Pi):**
   - Grid map management and pathfinding (e.g., A*)  
   - Motion controller sending STEP/DIR commands to Arduino  
-  - Sensor reading (endstops, ToF, IMU)  
+  - Sensor reading (endstops, IMU)  
 - **Optional:** ROS2 nodes for navigation and higher-level control  
 
 ## Assembly Instructions
 1. Assemble the chassis (wheels, motors, frame)  
 2. Mount the Z-lift mechanism  
 3. Attach gripper arms to the Z-lift  
-4. Place sensors (endstops, ToF, optional IMU)  
+4. Place sensors (endstops, optional IMU)  
 5. Wire motor drivers and sensors to Raspberry Pi / Arduino  
 6. Upload Arduino firmware and test motor/sensor functionality  
 7. Run Python scripts or ROS2 nodes to test autonomous movement  
