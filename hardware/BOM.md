@@ -2,12 +2,11 @@
 
 | Component                | Quantity | Notes                        |
 |--------------------------|---------:|------------------------------|
-| NEMA17 Stepper           | 2        | 40 Ncm 1.8°                  |
-| TB6600 Driver            | 2        | Stepper driver               |
+| [NEMA17 Stepper](https://www.omc-stepperonline.com/de/nema-17-bipolar-1-8deg-40ncm-0-4a-12v-42x42x39mm-4-draehte-17hs15-0404s)           | 4        | 40 Ncm 1.8°                  |
+| [A4988 Driver](https://www.amazon.de/AZDelivery-Schritt-komplett-Stiftleisten-Kühlkörper/dp/B07C2V9GWC)             | 4        | Stepper driver               |
 | Mini Linear Actuator     | 1        | 20–50 N                      |
-| VL53L1X ToF Sensor       | 1        | Distance measurement         |
-| Endstop Switches         | 4        | Microswitch                  |
-| Raspberry Pi 4           | 1        | Controller                   |
-| Arduino Nano             | 1        | Optional low-level controller|
-| Gummiarme/Silicone Pads  | 2        | Gripper                      |
+| [Endstop Switches](https://www.amazon.de/JZK-Mikroschalter-Mikro-Endschalter-Scharnierhebelschalter-Schnappschalter/dp/B0D6FNMY6R)         | 4        | Microswitch                  |
+| [Raspberry Pi 4](https://www.amazon.de/Raspberry-Starter-Kit-Offizielles-Kühlkörper-USB-Kartenleser/dp/B0DZ8JYXGQ)           | 1        | Controller                   |
+| [Arduino Nano](https://www.amazon.de/YELUFT-CH340G-Kompatibel-Arduino-Typ-C-Schnittstelle/dp/B0F5PZXH51)             | 1        | Optional low-level controller|
+| [Gummiarme/Silicone Pads](https://www.amazon.de/Abeillo-Selbstklebend-Anti-Rutsch-Gummimatte-Rechteckige-Rutschhemmer/dp/B0B5R847RS)  | 2        | Gripper                      |
 | 12V Power Supply         | 1        | 5–10 A                       |
