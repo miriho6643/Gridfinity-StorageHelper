@@ -1,11 +1,20 @@
 import time
 import RPi.GPIO as GPIO
-STEP_PIN = 17
-DIR_PIN = 27
+
+STEPX_PIN = 17
+DIRX_PIN = 27
+
+STEPY_PIN = 16
+DIRY_PIN = 26
+
+GRIPPER_PIN = 15
+ZAXE_PIN = 25
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(STEP_PIN,GPIO.OUT)
 GPIO.setup(DIR_PIN,GPIO.OUT)
-def move_cell(steps,direction):
+
+def move_cell(steps,axe,direction):
     GPIO.output(DIR_PIN,direction)
     for _ in range(steps):
         GPIO.output(STEP_PIN,True)
