@@ -1,14 +1,6 @@
 import time
 import RPi.GPIO as GPIO
-
-STEPX_PIN = 17
-DIRX_PIN = 27
-
-STEPY_PIN = 16
-DIRY_PIN = 26
-
-GRIPPER_PIN = 15
-ZAXE_PIN = 25
+from config import *
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(STEP_PIN,GPIO.OUT)
