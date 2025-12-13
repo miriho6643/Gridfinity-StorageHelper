@@ -10,4 +10,4 @@
 | Raspberry Pi 4           | 1        | Controller                   |
 | Arduino Nano             | 1        | Optional low-level controller|
 | Gummiarme/Silicone Pads  | 2        | Gripper                      |
-| 12V Power Supply         | 1        | 5–10 A                        |
+| 12V Power Supply         | 1        | 5–10 A                       |
