@@ -1,13 +1,10 @@
-# Wiring Guide – Gridfinity Autopilot
-
 ## 1️⃣ Overview of Main Components
-- **[Stepper Motors (NEMA17)](https://www.omc-stepperonline.com/de/nema-17-bipolar-1-8deg-40ncm-0-4a-12v-42x42x39mm-4-draehte-17hs15-0404s)** – for X/Y movement and optional Z-lift  
-- **[Motor Drivers (Pololu A4988)](https://www.amazon.de/AZDelivery-Schritt-komplett-Stiftleisten-Kühlkörper/dp/B07C2V9GWC)** – control stepper motors (heatsinks included)  
-- **[Raspberry Pi 4](https://www.amazon.de/Raspberry-Starter-Kit-Offizielles-Kühlkörper-USB-Kartenleser/dp/B0DZ8JYXGQ)** – main controller (Python / ROS2)  
-- **[Arduino Nano](https://www.amazon.de/YELUFT-CH340G-Kompatibel-Arduino-Typ-C-Schnittstelle/dp/B0F5PZXH51)** – optional: low-level stepper control  
-- **[Endstop Switches](https://www.amazon.de/JZK-Mikroschalter-Mikro-Endschalter-Scharnierhebelschalter-Schnappschalter/dp/B0D6FNMY6R)** – for home positions  
-- **Mini Linear Actuator / Gummiarme** – Z-lift and gripper actuation  
-- **12V Power Supply** – powers steppers and actuators  
+- **[Stepper Motors (NEMA17)](https://www.omc-stepperonline.com/de/nema-17-bipolar-1-8deg-40ncm-0-4a-12v-42x42x39mm-4-draehte-17hs15-0404s)** – X/Y/Z movement  
+- **[A4988 Drivers](https://www.amazon.de/AZDelivery-Schritt-komplett-Stiftleisten-Kühlkörper/dp/B07C2V9GWC)** – stepper motor control (heatsinks included)  
+- **Raspberry Pi 4** – main controller (Python / ROS2)  
+- **[Endstop Switches](https://www.amazon.de/JZK-Mikroschalter-Mikro-Endschalter-Scharnierhebelschalter-Schnappschalter/dp/B0D6FNMY6R)** – for X/Y/Z home positions  
+- **Linear actuator / 25KG Servo** – Z-lift & gripper  
+- **12V Power Supply** – powers stepper drivers and actuators  
 
 ---
 
@@ -20,82 +17,96 @@
 | B+         | Green         |
 | B-         | Black         |
 
-**Driver → Controller**
+**Driver → Raspberry Pi (BCM GPIO)**
 
-- **STEP** → GPIO pin from Arduino/RPi  
-- **DIR** → GPIO pin from Arduino/RPi  
-- **Enable** → optional, LOW to activate  
-- **GND** → connect to controller GND  
-- **Vmot** → 12V power supply  
+| Driver   | STEP   | DIR    | Enable (optional) |
+|----------|--------|--------|------------------|
+| X-Driver | GPIO17 | GPIO27 | GPIO22           |
+| Y-Driver | GPIO23 | GPIO24 | GPIO25           |
+| Z-Driver | GPIO5  | GPIO6  | GPIO12           |
+
+- **GND** of driver → Raspberry Pi GND  
+- **Vmot** → 12V Power Supply  
 
 > ⚠️ Set motor current (VREF) properly to avoid overheating.  
-> ⚠️ If using microstepping (e.g., 1/16), multiply steps accordingly in your scripts.
+> ⚠️ For microstepping, multiply steps in your code.
 
 ---
 
-## 3️⃣ Arduino / Raspberry Pi Wiring
+## 3️⃣ Endstops / Sensors
 
-### a) Arduino
-- STEP/DIR pins → Motor Driver  
-- Endstops → digital pins + GND  
-- Optional: PWM pins for Z-lift / gripper  
-- Connect Arduino GND to driver and power supply GND  
+| Axis | Endstop | GPIO (BCM) | Pull |
+|------|---------|------------|------|
+| X    | Min     | GPIO16     | Pull-up |
+| Y    | Min     | GPIO20     | Pull-up |
+| Z    | Min     | GPIO21     | Pull-up |
 
-### b) Raspberry Pi
-- GPIO → STEP/DIR driver pins  
-- Logic level: Pi uses 3.3V; driver may require 5V → use level shifter if needed  
-- Endstops → GPIO with pull-up/down resistor  
-- I2C devices (IMU, ToF) → GPIO2 (SDA), GPIO3 (SCL)
-
-> ⚠️ Pull-up resistor (10kΩ) if using NC switches; can also enable internal pull-up on Raspberry Pi GPIO.
+- Connect one side of the switch to **GPIO**, the other to **GND**.  
+- Enable internal pull-up in software (`GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)`).
 
 ---
 
-## 4️⃣ Endstops / Sensors
-- Home sensors X/Y/Z → digital GPIO input  
-- Pull-up resistor (10kΩ) if using NC switches  
-- Optional IMU → I2C bus  
+## 4️⃣ Z-Lift & Gripper
+
+| Component | GPIO (BCM) | Notes |
+|-----------|------------|-------|
+| Linear actuator (PWM) | GPIO18 | Hardware PWM (Raspberry Pi 4) |
+| 25KG Servo | GPIO19 | Software PWM possible |
+
+- **GND of actuator/servo** → common Raspberry Pi GND  
+
+> ⚠️ Linear actuator may require extra driver or transistor to switch 12V safely.
 
 ---
 
-## 5️⃣ Z-Lift & Gripper
-- Linear actuator → PWM pin (Arduino)  
-- Gripper servo → PWM pin (Arduino)  
-- Connect GND to common ground  
+## 5️⃣ Power Supply
 
----
-
-## 6️⃣ Power Supply
-- **12V** → stepper drivers, linear actuator  
-- **5V** → Raspberry Pi (via USB-C or DC-DC step-down converter)  
-- All GNDs must be connected together  
+- **12V → Stepper Drivers & Linear Actuator**  
+- **5V → Raspberry Pi** (via USB-C or DC-DC step-down converter)  
+- **All GNDs connected together**  
 
 ### ASCII Power & Wiring Overview
-12V PSU --> Motor Drivers --> Steppers
+
+12V PSU --> Stepper Drivers --> Steppers
 --> Linear Actuator
---> GND common
+--> shared GND
 5V PSU --> Raspberry Pi
-GND --> shared among all
+GND -----> connected to all
 
 ---
 
-## 7️⃣ Example Wiring Sketch (Text Diagram)
-Raspberry Pi GPIO 17 ---> STEP Pin X-Driver
-Raspberry Pi GPIO 27 ---> DIR Pin X-Driver
-Raspberry Pi GPIO 22 ---> STEP Pin Y-Driver
-Raspberry Pi GPIO 23 ---> DIR Pin Y-Driver
+## 6️⃣ Example Wiring Sketch (Text Diagram)
 
-Arduino D2 ---> STEP Pin Z-Driver
-Arduino D3 ---> DIR Pin Z-Driver
+Stepper X: STEP GPIO17 ---> STEP
+DIR GPIO27 ---> DIR
+ENABLE GPIO22 ---> ENABLE
 
-Endstop X-min ---> GPIO 5 (Pull-up)
-Endstop Y-min ---> GPIO 6 (Pull-up)
-Endstop Z-min ---> GPIO 7 (Pull-up)
+Stepper Y: STEP GPIO23 ---> STEP
+DIR GPIO24 ---> DIR
+ENABLE GPIO25 ---> ENABLE
 
-ToF Sensor SDA/SCL ---> GPIO2/GPIO3 (I2C)
-Z-Lift Linear Actuator ---> PWM Pin D9 Arduino
-Gripper Servo ---> PWM Pin D10 Arduino
+Stepper Z: STEP GPIO5 ---> STEP
+DIR GPIO6 ---> DIR
+ENABLE GPIO12 ---> ENABLE
+
+Endstops:
+X-min --> GPIO16 (Pull-up)
+Y-min --> GPIO20 (Pull-up)
+Z-min --> GPIO21 (Pull-up)
+
+Z-Lift Linear Actuator --> GPIO18 (PWM, via transistor/driver)
+Gripper Servo --> GPIO19 (PWM)
 
 12V Power Supply --> Drivers / Linear Actuator
 5V Power Supply --> Raspberry Pi
 GND --> All components connected together
+
+---
+
+## Notes
+
+- Make sure all **grounds are connected together**.  
+- Check **motor current VREF** before running.  
+- If using microstepping (1/16, 1/8), adjust step counts in software.  
+- For the actuator, use a **driver transistor or MOSFET** to handle 12V/5–10A safely.  
+- Pull-ups for endstops can be enabled in software; no external resistor needed if using Pi internal pull-ups.
