@@ -5,7 +5,6 @@ An autonomous robot designed to move Gridfinity boxes on a 42x42 mm grid.
 The robot features a differential drive, a Z-lift mechanism, and a gripper with pressure arms.
 
 ## Hardware
-# Bill of Materials (BOM)
 
 | Component | Quantity | Notes |
 |----------|---------:|-------|
