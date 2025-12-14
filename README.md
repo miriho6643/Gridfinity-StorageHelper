@@ -45,7 +45,6 @@ The robot features a differential drive, a Z-lift mechanism, and a gripper with 
 - RFID/NFC for box tracking  
 - Camera for visual feedback  
 - Multi-robot coordination  
-- Automated charging station  
 
 ## License
 MIT
