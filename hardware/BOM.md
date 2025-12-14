@@ -9,4 +9,4 @@
 | [Arduino Nano](https://www.amazon.de/YELUFT-CH340G-Kompatibel-Arduino-Typ-C-Schnittstelle/dp/B0F5PZXH51)             | 1        | Optional low-level controller|
 | [180° Servo](https://www.amazon.de/APKLVSR-Digitaler-Servomotor-Getriebe-Hubschrauber/dp/B0D3DGRMRX)         | 1        | 25 KG                        |
 | [Silicone Pads](https://www.amazon.de/Abeillo-Selbstklebend-Anti-Rutsch-Gummimatte-Rechteckige-Rutschhemmer/dp/B0B5R847RS)  | 2        | Gripper                      |
-| 12V Power Supply         | 1        | 5–10 A                       |
+| [12V Power Supply](https://www.amazon.de/Netzteil-Schaltnetzteil-Transformator-Beleuchtung-Industrieanlagen/dp/B07BLR16PB)         | 1        | 5–10 A                       |
