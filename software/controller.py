@@ -197,7 +197,6 @@ if __name__ == "__main__":
     grid.set_cell((0, 0), "TestBox")
 
     try:
-        move_cell((0, 0), (1, 1))
         calibrate()
     except KeyboardInterrupt:
         stop()
