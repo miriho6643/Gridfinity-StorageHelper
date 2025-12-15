@@ -1,8 +1,8 @@
 # Gridfinity System Configuration
 
 # Grid dimensions
-GRID_ROWS = 8        # Anzahl Reihen (angepasst für kleines Lager)
-GRID_COLS = 8        # Anzahl Spalten
+GRID_ROWS = 40        # Anzahl Reihen (angepasst für kleines Lager)
+GRID_COLS = 40        # Anzahl Spalten
 GRID_STORAGES = 10   # Anzahl der Lagerboxen
 
 # Grid cell dimensions (mm)

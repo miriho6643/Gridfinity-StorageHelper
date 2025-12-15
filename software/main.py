@@ -16,6 +16,7 @@ def index():
 def button():
     row = request.json["row"]
     col = request.json["col"]
+    print(row, col)
 
     return jsonify({"ok": True})
 
