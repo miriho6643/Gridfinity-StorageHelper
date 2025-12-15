@@ -11,6 +11,12 @@ env/
 pip-log.txt
 pip-delete-this-directory.txt
 
+# UI
+.html
+.css
+.js
+.php
+
 # Raspberry Pi / Linux
 *.swp
 *.swo
@@ -20,17 +26,6 @@ pip-delete-this-directory.txt
 *.sqlite
 *.tmp
 *.DS_Store
-
-# Arduino
-*.elf
-*.hex
-*.eep
-*.bin
-*.dmp
-*.obj
-*.dep
-*.lst
-*.map
 
 # ROS / ROS2
 build/
