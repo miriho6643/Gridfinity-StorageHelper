@@ -1,21 +1,30 @@
 # Gridfinity System Configuration
-GRID_ROWS = 40        # Anzahl Reihen
-GRID_COLS = 40        # Anzahl Spalten
-GRID_STORAGES = 10
-CELL_WIDTH = 1        # mm pro Grid-Zelle (Breite)
-CELL_HEIGHT = 10      # mm pro Grid-Zelle (Tiefe)
-Z_HEIGHT = 50         # max Höhe Z-Lift
-STEPPER_MULTIPLYER = 1
-SERVO_MULTIPLYER = 1
 
+# Grid dimensions
+GRID_ROWS = 8        # Anzahl Reihen (angepasst für kleines Lager)
+GRID_COLS = 8        # Anzahl Spalten
+GRID_STORAGES = 10   # Anzahl der Lagerboxen
+
+# Grid cell dimensions (mm)
+CELL_WIDTH = 42      # Breite einer Gridfinity-Zelle, z.B. Standard-Gridfinity-Modul
+CELL_HEIGHT = 42     # Tiefe einer Gridfinity-Zelle
+Z_HEIGHT = 50        # max Höhe Z-Lift (mm)
+
+# Movement multipliers
+STEPPER_MULTIPLIER = 16  # für 1/16 Microstepping bei A4988
+
+# Stepper motor pins (BCM)
 STEPX_PIN = 17
 DIRX_PIN = 27
-STEPY_PIN = 16
-DIRY_PIN = 26
-STEPZ_PIN = 15
-DIRZ_PIN = 25
-GRIPPER_PIN = 14
+STEPY_PIN = 23
+DIRY_PIN = 24
+STEPZ_PIN = 5
+DIRZ_PIN = 6
 
-XEND_PIN = 13
-YEND_PIN = 12
-ZEND_PIN = 11
+# Gripper servo pin
+GRIPPER_PIN = 19
+
+# Endstop pins (BCM)
+XEND_PIN = 16
+YEND_PIN = 20
+ZEND_PIN = 21

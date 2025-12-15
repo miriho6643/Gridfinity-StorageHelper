@@ -76,7 +76,7 @@ def move(to: tuple):
 
     # X-axis
     GPIO.output(DIRX_PIN, dx >= 0)
-    for _ in range(abs(dx) * STEPPER_MULTIPLYER * 1.8):
+    for _ in range(int(abs(dx) * STEPPER_MULTIPLIER * 1.8)):
         GPIO.output(STEPX_PIN, True)
         time.sleep(0.001)
         GPIO.output(STEPX_PIN, False)
@@ -84,7 +84,7 @@ def move(to: tuple):
 
     # Y-axis
     GPIO.output(DIRY_PIN, dy >= 0)
-    for _ in range(abs(dy) * STEPPER_MULTIPLYER * 1.8):
+    for _ in range(int(abs(dy) * STEPPER_MULTIPLIER * 1.8)):
         GPIO.output(STEPY_PIN, True)
         time.sleep(0.001)
         GPIO.output(STEPY_PIN, False)
@@ -107,7 +107,7 @@ class Gripper:
     @staticmethod
     def move_z(up: bool):
         GPIO.output(DIRZ_PIN, up)
-        for _ in range(Z_HEIGHT-CELL_HEIGHT*SERVO_MULTIPLYER*1.8):
+        for _ in range(int(Z_HEIGHT-CELL_HEIGHT*STEPPER_MULTIPLIER*1.8)):
             GPIO.output(STEPZ_PIN, True)
             time.sleep(0.001)
             GPIO.output(STEPZ_PIN, False)
@@ -142,8 +142,46 @@ def move_cell(origin: tuple, to: tuple):
 # UTILITY
 # -------------------------------
 def calibrate(x: bool = True, y: bool = True, z: bool = True):
-    """Placeholder for calibration routine"""
-    pass
+    """Kalibrierung aller Achsen zu den Endstops"""
+    
+    print("Starte Kalibrierung...")
+    
+    # X-Achse homing
+    if x:
+        print("Fahre X-Achse zum Endstop...")
+        GPIO.output(DIRX_PIN, False)  # Richtung Endstop
+        while GPIO.input(XEND_PIN) == GPIO.HIGH:
+            GPIO.output(STEPX_PIN, True)
+            time.sleep(0.002)
+            GPIO.output(STEPX_PIN, False)
+            time.sleep(0.002)
+        pos[0] = 0
+        print("X-Achse kalibriert.")
+
+    # Y-Achse homing
+    if y:
+        print("Fahre Y-Achse zum Endstop...")
+        GPIO.output(DIRY_PIN, False)
+        while GPIO.input(YEND_PIN) == GPIO.HIGH:
+            GPIO.output(STEPY_PIN, True)
+            time.sleep(0.002)
+            GPIO.output(STEPY_PIN, False)
+            time.sleep(0.002)
+        pos[1] = 0
+        print("Y-Achse kalibriert.")
+
+    # Z-Achse homing
+    if z:
+        print("Fahre Z-Achse zum Endstop...")
+        GPIO.output(DIRZ_PIN, False)
+        while GPIO.input(ZEND_PIN) == GPIO.HIGH:
+            GPIO.output(STEPZ_PIN, True)
+            time.sleep(0.002)
+            GPIO.output(STEPZ_PIN, False)
+            time.sleep(0.002)
+        print("Z-Achse kalibriert.")
+
+    print("Alle ausgewählten Achsen kalibriert!")
 
 def stop():
     """Cleanup GPIO and stop PWM"""
@@ -160,5 +198,6 @@ if __name__ == "__main__":
 
     try:
         move_cell((0, 0), (1, 1))
+        calibrate()
     except KeyboardInterrupt:
         stop()
