@@ -1,18 +1,28 @@
-    <button onclick="send(this)">START</button>
-    <button onclick="send(this)">STOP</button>
-    <button onclick="send(this)">RESET</button>
-    <button onclick="send(this)">STATUS</button>
+<div class="grid">
+    {% for r in range(rows) %}
+        {% for c in range(cols) %}
+            <button onclick="send({{ r }}, {{ c }})">
+                {{ r }},{{ c }}
+            </button>
+        {% endfor %}
+    {% endfor %}
+</div>
 
-    <script>
-        function send(button) {
-            fetch("/button", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: button.innerText
-                })
-            });
-        }
-    </script>
+<script>
+    function send(row, col) {
+        fetch("/button", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                row: row,
+                col: col
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Server-Antwort:", data);
+        });
+    }
+</script>

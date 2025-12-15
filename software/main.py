@@ -1,21 +1,23 @@
 from controller import *
+import config
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template(
+        "index.html",
+        rows=config.GRID_ROWS,
+        cols=config.GRID_COLS
+    )
 
 @app.route("/button", methods=["POST"])
 def button():
-    button_name = request.json["name"]
-    
+    row = request.json["row"]
+    col = request.json["col"]
 
-    # hier kannst du später reagieren:
-    # if button_name == "START": ...
     return jsonify({"ok": True})
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
