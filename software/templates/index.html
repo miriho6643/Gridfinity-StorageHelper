@@ -8,6 +8,20 @@
     {% endfor %}
 </div>
 
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat({{ cols }}, 40px); /* feste Spaltenbreite */
+        gap: 5px; /* Abstand zwischen Buttons */
+    }
+
+    .grid button {
+        width: 100%;       /* passt in die Spalte */
+        height: 40px;      /* gleiche Höhe */
+        text-align: center;
+    }
+</style>
+
 <script>
     function send(row, col) {
         fetch("/button", {
