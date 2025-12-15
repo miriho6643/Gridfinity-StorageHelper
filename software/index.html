@@ -1,0 +1,18 @@
+    <button onclick="send(this)">START</button>
+    <button onclick="send(this)">STOP</button>
+    <button onclick="send(this)">RESET</button>
+    <button onclick="send(this)">STATUS</button>
+
+    <script>
+        function send(button) {
+            fetch("/button", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: button.innerText
+                })
+            });
+        }
+    </script>
