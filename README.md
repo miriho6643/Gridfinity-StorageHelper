@@ -48,4 +48,4 @@ The robot features a differential drive, a Z-lift mechanism, and a gripper with 
 - Multi-robot coordination  
 
 ## License
-MITr7e5dftzsa3rwtzbzudeswtedtuzgdesrzzkjzgtfresztuhhui34255fuhiui55sa243dfguhoufds5a4dfzh.lhf5
+MIT
