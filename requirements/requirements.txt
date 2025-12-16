@@ -1,0 +1,4 @@
+Flask>=2.3.0         # für den Webserver / GUI
+RPi.GPIO>=0.7.1       # GPIO-Steuerung auf Raspberry Pi
+numpy>=1.25.0         # falls du Mathe/Arrays benutzt
+pigpio>=1.78          # für präzise PWM-Steuerung
