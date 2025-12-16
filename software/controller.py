@@ -26,6 +26,7 @@ GPIO.setup(YEND_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(ZEND_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Gripper Servo Setup
+GPIO.setup(GRIPPER_PIN, GPIO.OUT)
 pwm = GPIO.PWM(GRIPPER_PIN, 50)
 pwm.start(0)
 
